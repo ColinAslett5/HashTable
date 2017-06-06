@@ -4,16 +4,16 @@
 #include <cctype>
 #include <cstring>
 #include "table.h"
-
+#include "random.h"
 using namespace std;
 
 int main(){
   char input[32];
   Table table;
-  //RN rn("firstnames.txt","lastnames.txt");//generating random student info
+  Name name("firstnames.txt","lastnames.txt");//generating random student info
   cout << "Welcome To Hash Table!" << endl;
   while(true){
-    cout << "Enter a number, 1 = add student/s, 2 = delete student, 3 = print out list of students, 4 = quit" << endl;
+    cout << "Enter a number, 1 = add student/s, 2 = delete student, 3 = print out list of students, 4 = random generation, 5 = quit" << endl;
     cin >> input;
     //adding students
     if(input[0] == '1'){
@@ -51,8 +51,19 @@ int main(){
     else if(input[0] == '3'){
       table.print();//calls the table function to print out the table
     }
-    //quitting the program
+    //randomly generating students
     else if(input[0] == '4'){
+      //have to find out how many students to add
+      int num;
+      cout << "How many random students: " << endl;
+      cin >> num;
+      for(int i = 0;i < num;i++){
+	table.add(name.Fname(),name.Lname(),name.Id(),name.GPA());
+      }
+      cout << "Succesful" << endl;
+    }
+    //quitting the program
+    else if(input[0] == '5'){
       return 0;
     }
   }
